@@ -46,4 +46,18 @@ public class OrderItem {
 		this.product = product;
 	}
 	
+	//CRIAÇÃO DO MÉTODO PARA CALCULAR O SUBTOTAL DO PRODUTO.
+	public double subTotal() {
+		return price * quantity;
+	}
+	
+	//CRIAÇÃO DO MÉTODO toString PARA IMPRESSÃO DOS DADOS.
+	@Override
+	public String toString() {
+		return "Produto: " + getProduct().getName() + "\n" +
+				"Preço: R$" + String.format("%.2f", price) + "\n" +
+				"Quantidade: " + quantity + "\n" +
+				"SubTotal: R$" + String.format("%.2f", subTotal());
+	}
+	
 }
