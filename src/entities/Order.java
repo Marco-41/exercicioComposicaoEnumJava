@@ -1,5 +1,6 @@
 package entities;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -7,6 +8,9 @@ import java.util.List;
 import entities.enums.OrderStatus;
 
 public class Order {
+	
+	//INSTANCIANDO UM SimpleDateFormat PARA FORMATAÇÃO DE DATA.
+	private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
 	//DECLARAÇÃO DE ATRIBUTOS.
 	private Date moment;
@@ -87,4 +91,28 @@ public class Order {
 		
 		return soma;
 	}
+	
+	//CRIAÇÃO DO MÉTODO toString PARA IMPRESSÃO DOS DADOS.
+		@Override
+		public String toString() {
+			
+			StringBuilder sb = new StringBuilder(); //CLASSE StringBuilder PARA FORMATAÇÃO DOS DADOS.
+			//MÉTODO APPEND PARA ACRESCENTAR NO FINAL DA STRING.
+			sb.append("Data do pedido: ");
+			sb.append(sdf.format(moment) + "\n");
+			sb.append("Status do pedido: ");
+			sb.append(status + "\n");
+			sb.append("Cliente: ");
+			sb.append(client + "\n");
+			sb.append("Itens do pedido: " + "\n");
+			
+			for(OrderItem item : items) {
+				sb.append(item + "\n");
+			}
+			
+			sb.append("Preço total: R$");
+			sb.append(String.format("%.2f", total()));
+			return toString();
+		}
+		
 }
