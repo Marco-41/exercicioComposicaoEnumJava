@@ -31,6 +31,8 @@ public class MainProgram {
 		//IMPRIMINDO O PRODUTO PARA TESTAR.
 		System.out.println(oi1);
 		
+		System.out.println();
+		
 		//IMPRIMINDO O Client PARA TESTAR.
 		System.out.println(c);
 		
