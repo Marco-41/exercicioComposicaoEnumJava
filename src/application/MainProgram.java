@@ -2,12 +2,15 @@ package application;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 import java.util.Scanner;
 
 import entities.Client;
+import entities.Order;
 import entities.OrderItem;
 import entities.Product;
+import entities.enums.OrderStatus;
 
 public class MainProgram {
 
@@ -19,23 +22,64 @@ public class MainProgram {
 		//INSTANCIANDO UM SimpleDateFormat PARA FORMATAÇÃO DE DATA.
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		
-		//INSTANCIANDO UM Product PARA TESTAR.
-		Product p = new Product("Smart TV", 1000.00);
+		//COLHENDO OS DADOS DO CLIENTE.
+		System.out.println("Digite os dados do cliente: ");
 		
-		//INSTANCIANDO UM OrderItem PARA TESTAR.
-		OrderItem oi1 = new OrderItem(1, 1000.00, p);
+		System.out.print("Nome: ");
+		String name = sc.nextLine();
 		
-		//INSTANCIANDO UM Client PARA TESTAR.
-		Client c = new Client("Marco Oliveira", "marcooliveira@gmail.com", sdf.parse("19/06/1998"));
+		System.out.print("Email: ");
+		String email = sc.next();
 		
-		//IMPRIMINDO O PRODUTO PARA TESTAR.
-		System.out.println(oi1);
+		System.out.print("Data de nascimento (dd/MM/yyyy): ");
+		Date birtDate = sdf.parse(sc.next());
 		
+		//INSTANCIANDO UM CLIENTE PARA RECEBER OS DADOS DIGITADOS PELO USUÁRIO E ASSOCIÁ-LOS AO MESMO.
+		Client client = new Client(name, email, birtDate);
+		
+		//COLHENDO OS DADOS DO PEDIDO.
+		System.out.println("Digite os dados do pedido: ");
+		
+		System.out.print("Status do pedido: ");
+		OrderStatus status = OrderStatus.valueOf(sc.next()); /*valueOf PARA CONVERTER A STRING RECEBIDA PARA O VALOR CORRESPONDENTE
+		DEFINIDO LÁ NO Enum OrderStatus.*/
+		
+		//INSTANCIANDO UM PEDIDO PARA RECEBER OS DADOS DIGITADOS PELO USUÁRIO E ASSOCIÁ-LOS AO MESMO.
+		Order order = new Order(new Date(), status, client);
+		
+		//COLHENDO OS DADOS DOS ITEMS DO PEDIDO.
+		System.out.print("Digite quantos items o pedido vai ter: ");
+		int qntdDeItems = sc.nextInt();
+		
+		//CRIAÇÃO DO LAÇO DE REPETIÇÃO FOR PARA PERCORRER A QUANTIDADE DE ITEMS DO PEDIDO.
+		for(int i = 0; i < qntdDeItems; i++) {
+			
+			System.out.println("Digite os dados do " + (i + 1) + " item: "); // i + 1 POIS O i INICIA-SE EM 0.
+			
+			System.out.print("Nome do produto: ");
+			sc.nextLine(); //PARA ABSORVER A QUEBRA DE LINHA QUE FICOU PENDENTE.
+			String productName = sc.nextLine();
+			
+			System.out.print("Preço do produto: ");
+			double productPrice = sc.nextDouble();
+			
+			System.out.print("Quantidade do produto: ");
+			int quantity = sc.nextInt();
+			
+			//INSTANCIANDO UM PRODUTO PARA RECEBER OS DADOS DIGITADOS PELO USUÁRIO E ASSOCIÁ-LOS AO MESMO.
+			Product product = new Product(productName, productPrice);
+			
+			//INSTANCIANDO UM ITEM DE PEDIDO PARA RECEBER OS DADOS DIGITADOS PELO USUÁRIO E ASSOCIÁ-LOS AO PRODUTO.
+			OrderItem oit = new OrderItem(quantity, productPrice, product);
+			
+			//ADICIONANDO O ITEM DO PEDIDO DENTRO DO PEDIDO.
+			order.addItem(oit);
+		}
+		
+		//IMPRESSÃO DOS DADOS DO PEDIDO.
 		System.out.println();
-		
-		//IMPRIMINDO O Client PARA TESTAR.
-		System.out.println(c);
-		
+		System.out.println(order);
+				
 		sc.close();
 	}
 
