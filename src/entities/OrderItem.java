@@ -54,9 +54,11 @@ public class OrderItem {
 	//CRIAÇÃO DO MÉTODO toString PARA IMPRESSÃO DOS DADOS.
 	@Override
 	public String toString() {
-		return "Produto: " + getProduct().getName() + "\n" +
+		return  "\n" +
+				"Produto: " + getProduct().getName() + "\n" +
 				"Preço: R$" + String.format("%.2f", price) + "\n" +
 				"Quantidade: " + quantity + "\n" +
+				"\n" +
 				"SubTotal: R$" + String.format("%.2f", subTotal());
 	}
 	

@@ -48,13 +48,13 @@ public class MainProgram {
 		Order order = new Order(new Date(), status, client);
 		
 		//COLHENDO OS DADOS DOS ITEMS DO PEDIDO.
-		System.out.print("Digite quantos items o pedido vai ter: ");
+		System.out.print("Digite quantos items o pedido irá ter: ");
 		int qntdDeItems = sc.nextInt();
 		
 		//CRIAÇÃO DO LAÇO DE REPETIÇÃO FOR PARA PERCORRER A QUANTIDADE DE ITEMS DO PEDIDO.
 		for(int i = 0; i < qntdDeItems; i++) {
 			
-			System.out.println("Digite os dados do " + (i + 1) + " item: "); // i + 1 POIS O i INICIA-SE EM 0.
+			System.out.println("Digite os dados do " + (i + 1) + "° item: "); // i + 1 POIS O i INICIA-SE EM 0.
 			
 			System.out.print("Nome do produto: ");
 			sc.nextLine(); //PARA ABSORVER A QUEBRA DE LINHA QUE FICOU PENDENTE.
@@ -78,7 +78,7 @@ public class MainProgram {
 		
 		//IMPRESSÃO DOS DADOS DO PEDIDO.
 		System.out.println();
-		System.out.println(order);
+		System.out.println(order); //IMPRIMINDO O ORDEM POIS É NELE QUE ESTÁ A CLASSE toString COM OS DADOS JÁ FORMATADOS.
 				
 		sc.close();
 	}

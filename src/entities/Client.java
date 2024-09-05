@@ -53,8 +53,9 @@ public class Client {
 	//CRIAÇÃO DO MÉTODO toString PARA IMPRESSÃO DOS DADOS.
 	@Override
 	public String toString() {
-		return "Nome: " + name + "\n" +
-				"Data de nascimento: " + "(" + sdf.format(birthDate) + ")" + "\n" +
-				"Email: " + email;
+		return name + "\n" +
+			   "Data de nascimento: " + "(" + sdf.format(birthDate) + ")" + "\n" +
+			   "Email: " + email;
 	}
+	
 }
